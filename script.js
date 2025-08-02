@@ -94,100 +94,140 @@ function showSpeedRecommendation(download, upload) {
     speedResult.parentNode.insertBefore(recommendationDiv.firstElementChild, speedResult.nextSibling);
 }
 
-/
+// Coverage Check Functionality
+function checkCoverage() {
+    const address = document.getElementById('address').value;
+    const pincode = document.getElementById('pincode').value;
+    const result = document.getElementById('coverageResult');
+    
+    if (!address || !pincode) {
+        showMessage('Please enter both address and pincode', 'error');
+        return;
+    }
+    
+    // Simulate coverage check
+    result.style.display = 'block';
+    result.innerHTML = '<div class="loading"></div> Checking coverage...';
+    
+    setTimeout(() => {
+        // Simulate coverage result (in real implementation, this would check against actual coverage data)
+        const isAvailable = Math.random() > 0.3; // 70% chance of availability
+        
+        if (isAvailable) {
+            result.className = 'coverage-result available';
+            result.innerHTML = `
+                <h4><i class="fas fa-check-circle"></i> Service Available!</h4>
+                <p>Great news! Airtel Fiber is available at your location.</p>
+                <ul>
+                    <li>Fiber: Available (Up to 1Gbps)</li>
+                    <li>Air Fiber: Available (Up to 100Mbps)</li>
+                    <li>Installation: 2-4 hours</li>
+                </ul>
+                <button class="btn-primary" onclick="openBookingModal()">Book Installation</button>
+            `;
+        } else {
+            result.className = 'coverage-result unavailable';
+            result.innerHTML = `
+                <h4><i class="fas fa-times-circle"></i> Service Not Available</h4>
+                <p>Unfortunately, Airtel Fiber is not available at your location yet.</p>
+                <p>We're expanding our network. Please check back in a few months or contact us for updates.</p>
+                <button class="btn-secondary" onclick="contactUs()">Contact Us</button>
+            `;
+        }
+    }, 2000);
+}
 
 // Coverage form submission
-document.getElementById('coverageForm').addEventListener('click', function(e) {
+document.getElementById('coverageForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    checkCoverage()
-    alert('Our service is available for this location.');
+    checkCoverage();
 });
 
-// // Booking Modal Functions
-// function openBookingModal() {
-//     bookingModal.style.display = 'block';
-//     document.body.style.overflow = 'hidden';
-// }
+// Booking Modal Functions
+function openBookingModal() {
+    bookingModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
 
-// function closeBookingModal() {
-//     bookingModal.style.display = 'none';
-//     document.body.style.overflow = 'auto';
-// }
+function closeBookingModal() {
+    bookingModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
 
-// // Close modal when clicking outside
-// window.addEventListener('click', (e) => {
-//     if (e.target === bookingModal) {
-//         closeBookingModal();
-//     }
-// });
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === bookingModal) {
+        closeBookingModal();
+    }
+});
 
 // Booking form submission
-    // document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    //     e.preventDefault();
-        
-    //     const formData = new FormData(this);
-    //     const bookingData = {
-    //         name: document.getElementById('bookingName').value,
-    //         phone: document.getElementById('bookingPhone').value,
-    //         email: document.getElementById('bookingEmail').value,
-    //         address: document.getElementById('bookingAddress').value,
-    //         service: document.getElementById('bookingService').value,
-    //         package: document.getElementById('bookingPackage').value,
-    //         date: document.getElementById('bookingDate').value,
-    //         time: document.getElementById('bookingTime').value
-    //     };
-        
-    //     // Validate form
-    //     if (!bookingData.name || !bookingData.phone || !bookingData.email || !bookingData.address || 
-    //         !bookingData.service || !bookingData.package || !bookingData.date || !bookingData.time) {
-    //         showMessage('Please fill in all fields', 'error');
-    //         return;
-    //     }
-        
-    //     // Simulate booking submission
-    //     const btnBooking = document.querySelector('.btn-booking');
-    //     btnBooking.innerHTML = '<span class="loading"></span> Processing...';
-    //     btnBooking.disabled = true;
-        
-    //     setTimeout(() => {
-    //         showMessage('Booking submitted successfully! We will contact you within 24 hours.', 'success');
-    //         closeBookingModal();
-    //         this.reset();
-    //         btnBooking.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Booking';
-    //         btnBooking.disabled = false;
-    //     }, 2000);
-    // });
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const bookingData = {
+        name: document.getElementById('bookingName').value,
+        phone: document.getElementById('bookingPhone').value,
+        email: document.getElementById('bookingEmail').value,
+        address: document.getElementById('bookingAddress').value,
+        service: document.getElementById('bookingService').value,
+        package: document.getElementById('bookingPackage').value,
+        date: document.getElementById('bookingDate').value,
+        time: document.getElementById('bookingTime').value
+    };
+    
+    // Validate form
+    if (!bookingData.name || !bookingData.phone || !bookingData.email || !bookingData.address || 
+        !bookingData.service || !bookingData.package || !bookingData.date || !bookingData.time) {
+        showMessage('Please fill in all fields', 'error');
+        return;
+    }
+    
+    // Simulate booking submission
+    const btnBooking = document.querySelector('.btn-booking');
+    btnBooking.innerHTML = '<span class="loading"></span> Processing...';
+    btnBooking.disabled = true;
+    
+    setTimeout(() => {
+        showMessage('Booking submitted successfully! We will contact you within 24 hours.', 'success');
+        closeBookingModal();
+        this.reset();
+        btnBooking.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Booking';
+        btnBooking.disabled = false;
+    }, 2000);
+});
 
 // Contact form submission
-// document.getElementById('contactForm').addEventListener('submit', function(e) {
-//     e.preventDefault();
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
     
-//     const contactData = {
-//         name: document.getElementById('name').value,
-//         email: document.getElementById('email').value,
-//         phone: document.getElementById('phone').value,
-//         service: document.getElementById('service').value,
-//         message: document.getElementById('message').value
-//     };
+    const contactData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        service: document.getElementById('service').value,
+        message: document.getElementById('message').value
+    };
     
-//     // Validate form
-//     if (!contactData.name || !contactData.email || !contactData.phone || !contactData.service || !contactData.message) {
-//         showMessage('Please fill in all fields', 'error');
-//         return;
-//     }
+    // Validate form
+    if (!contactData.name || !contactData.email || !contactData.phone || !contactData.service || !contactData.message) {
+        showMessage('Please fill in all fields', 'error');
+        return;
+    }
     
-//     // Simulate form submission
-//     const btnContact = document.querySelector('.btn-contact');
-//     btnContact.innerHTML = '<span class="loading"></span> Sending...';
-//     btnContact.disabled = true;
+    // Simulate form submission
+    const btnContact = document.querySelector('.btn-contact');
+    btnContact.innerHTML = '<span class="loading"></span> Sending...';
+    btnContact.disabled = true;
     
-//     setTimeout(() => {
-//         showMessage('Message sent successfully! We will get back to you soon.', 'success');
-//         this.reset();
-//         btnContact.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-//         btnContact.disabled = false;
-//     }, 2000);
-// });
+    setTimeout(() => {
+        showMessage('Message sent successfully! We will get back to you soon.', 'success');
+        this.reset();
+        btnContact.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+        btnContact.disabled = false;
+    }, 2000);
+});
 
 // Service Selection Functions
 function selectService(service) {
