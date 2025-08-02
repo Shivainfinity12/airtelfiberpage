@@ -138,12 +138,12 @@ function checkCoverage() {
 }
 
 // Coverage form submission
-// document.getElementById('coverageForm').addEventListener('submit', function(e) {
-//     e.preventDefault();
-//     checkCoverage();
-// });
+document.getElementById('coverageForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    checkCoverage();
+});
 
-// // Booking Modal Functions
+// Booking Modal Functions
 // function openBookingModal() {
 //     bookingModal.style.display = 'block';
 //     document.body.style.overflow = 'hidden';
@@ -154,15 +154,28 @@ function checkCoverage() {
 //     document.body.style.overflow = 'auto';
 // }
 
-// // Close modal when clicking outside
+// Close modal when clicking outside
 // window.addEventListener('click', (e) => {
 //     if (e.target === bookingModal) {
 //         closeBookingModal();
 //     }
 // });
 
-// Booking form submission
-
+// // Booking form submission
+// document.getElementById('bookingForm').addEventListener('submit', function(e) {
+//     e.preventDefault();
+    
+//     const formData = new FormData(this);
+//     const bookingData = {
+//         name: document.getElementById('bookingName').value,
+//         phone: document.getElementById('bookingPhone').value,
+//         email: document.getElementById('bookingEmail').value,
+//         address: document.getElementById('bookingAddress').value,
+//         service: document.getElementById('bookingService').value,
+//         package: document.getElementById('bookingPackage').value,
+//         date: document.getElementById('bookingDate').value,
+//         time: document.getElementById('bookingTime').value
+//     };
     
     // // Validate form
     // if (!bookingData.name || !bookingData.phone || !bookingData.email || !bookingData.address || 
@@ -172,21 +185,21 @@ function checkCoverage() {
     // }
     
     // Simulate booking submission
-    const btnBooking = document.querySelector('.btn-booking');
-    btnBooking.innerHTML = '<span class="loading"></span> Processing...';
-    btnBooking.disabled = true;
+    // const btnBooking = document.querySelector('.btn-booking');
+    // btnBooking.innerHTML = '<span class="loading"></span> Processing...';
+    // btnBooking.disabled = true;
     
-    setTimeout(() => {
-        showMessage('Booking submitted successfully! We will contact you within 24 hours.', 'success');
-        closeBookingModal();
-        this.reset();
-        btnBooking.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Booking';
-        btnBooking.disabled = false;
-    }, 2000);
-});
+//     setTimeout(() => {
+//         showMessage('Booking submitted successfully! We will contact you within 24 hours.', 'success');
+//         closeBookingModal();
+//         this.reset();
+//         btnBooking.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Booking';
+//         btnBooking.disabled = false;
+//     }, 2000);
+// });
 
 // Contact form submission
-document.getElementById('contactForm').addEventListener('click', function(e) {
+document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const contactData = {
@@ -214,7 +227,6 @@ document.getElementById('contactForm').addEventListener('click', function(e) {
         btnContact.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
         btnContact.disabled = false;
     }, 2000);
-    console.log(contactData.message)
 });
 
 // Service Selection Functions
@@ -232,19 +244,19 @@ function selectService(service) {
     }, 1500);
 }
 
-function selectPackage(package) {
-    const packageNames = {
-        'basic': 'Basic Installation (₹999)',
-        'premium': 'Premium Installation (₹1,499)',
-        'enterprise': 'Enterprise Installation (₹2,999)'
-    };
+// function selectPackage(package) {
+//     const packageNames = {
+//         'basic': 'Basic Installation (₹999)',
+//         'premium': 'Premium Installation (₹1,499)',
+//         'enterprise': 'Enterprise Installation (₹2,999)'
+//     };
     
-    showMessage(`You selected: ${packageNames[package]}`, 'success');
-    setTimeout(() => {
-        openBookingModal();
-        document.getElementById('bookingPackage').value = package;
-    }, 1500);
-}
+//     showMessage(`You selected: ${packageNames[package]}`, 'success');
+//     setTimeout(() => {
+//         openBookingModal();
+//         document.getElementById('bookingPackage').value = package;
+//     }, 1500);
+// }
 
 
 
