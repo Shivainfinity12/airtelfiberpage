@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airtel Fiber & Air Fiber Installation Services - Official Partner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-wifi"></i>
+                <span>Service Provider : Abhishek</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#coverage">Coverage</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1> <br>Airtel Fiber <br>Air Fiber</h1>
+                <p>Get router in 2500rs and it will be installed free at your location .Grab this opportunity RIGHT NOW!</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="openBookingModal()">
+                        <i class="fas fa-calendar-check"></i>
+                        Book Installation
+                    </button>
+                    <button class="btn-secondary" onclick="checkCoverage()">
+                        <i class="fas fa-map-marker-alt"></i>
+                        7400931824
+                    </button>
+                </div>
+                <div class="hero-features">
+                    <div class="feature">
+                        <i class="fas fa-bolt"></i>
+                        <span>Up to 1Gbps Speed</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <span>Same Day Installation</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="speed-test-widget">
+                    <h3>Test Your Current Speed</h3>
+                    <div class="speed-result" id="speedResult">
+                        <div class="speed-item">
+                            <span class="speed-label">Download</span>
+                            <span class="speed-value" id="downloadSpeed">--</span>
+                            <span class="speed-unit">Mbps</span>
+                        </div>
+                        <div class="speed-item">
+                            <span class="speed-label">Upload</span>
+                            <span class="speed-value" id="uploadSpeed">--</span>
+                            <span class="speed-unit">Mbps</span>
+                        </div>
+                    </div>
+                    <button class="btn-test" onclick="testSpeed()">
+                        <i class="fas fa-play"></i>
+                        Start Test
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Installation Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-fiber"></i>
+                    </div>
+                    <h3>Airtel Fiber Installation</h3>
+                    <p>High-speed fiber optic internet with speeds up to 1Gbps. Perfect for streaming, gaming, and work from home.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Professional installation</li>
+                        <li><i class="fas fa-check"></i> Free router setup</li>
+                        <li><i class="fas fa-check"></i> 30-day warranty</li>
+                        <li><i class="fas fa-check"></i> Technical support</li>
+                    </ul>
+                    <button class="btn-service" onclick="selectService('fiber')">Choose Fiber</button>
+                </div>
+                <div class="service-card featured">
+                    <div class="service-badge">Most Popular</div>
+                    <div class="service-icon">
+                        <i class="fas fa-satellite-dish"></i>
+                    </div>
+                    <h3>Air Fiber Installation</h3>
+                    <p>Wireless high-speed internet using advanced radio technology. Ideal for areas without fiber infrastructure.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Quick setup (2-3 hours)</li>
+                        <li><i class="fas fa-check"></i> No digging required</li>
+                        <li><i class="fas fa-check"></i> Weather resistant</li>
+                        <li><i class="fas fa-check"></i> Up to 100Mbps speed</li>
+                    </ul>
+                    <button class="btn-service" onclick="selectService('airfiber')">Choose Air Fiber</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Maintenance & Support</h3>
+                    <p>Ongoing technical support and maintenance services to keep your connection running smoothly.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 24/7 helpline</li>
+                        <li><i class="fas fa-check"></i> Remote troubleshooting</li>
+                        <li><i class="fas fa-check"></i> On-site visits</li>
+                        <li><i class="fas fa-check"></i> Equipment upgrades</li>
+                    </ul>
+                    <button class="btn-service" onclick="selectService('maintenance')">Get Support</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Transparent Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic Installation</h3>
+                    <div class="price">
+                        <span class="currency">₹</span>
+                        <span class="amount">599</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Jio Hotstar</li>
+                        <li><i class="fas fa-check"></i> Zee subscription</li>
+                        <li><i class="fas fa-check"></i> Google One</li>
+                        <li><i class="fas fa-check"></i> No Netflix</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="selectPackage('basic')">30 Mbps</button>
+                </div>
+
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Best Value</div>
+                    <h3>Premium Installation</h3>
+                    <div class="price">
+                        <span class="currency">₹</span>
+                        <span class="amount">899</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <ul>
+                         <li><i class="fas fa-check"></i> Jio Hotstar</li>
+                        <li><i class="fas fa-check"></i> Zee subscription</li>
+                        <li><i class="fas fa-check"></i> Google One</li>
+                        <li><i class="fas fa-check"></i> No Netflix</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="selectPackage('premium')">100 Mbps</button>
+
+
+
+
+
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise Installation</h3>
+                    <div class="price">
+                        <span class="currency">₹</span>
+                        <span class="amount">1,199</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <ul>
+                         <li><i class="fas fa-check"></i> Jio Hotstar</li>
+                        <li><i class="fas fa-check"></i> Zee subscription</li>
+                        <li><i class="fas fa-check"></i> Google One</li>
+                        <li><i class="fas fa-check"></i>  Netflix</li>
+                         <li><i class="fas fa-check"></i> Apple TV</li>
+                        <li><i class="fas fa-check"></i> Amazon Prime</li>
+                        
+                    </ul>
+                    <button class="btn-pricing" onclick="selectPackage('enterprise')">100Mbps</button>
+
+
+
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    
+        <div class="container">
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic Installation</h3>
+                    <div class="price">
+                        <span class="currency">₹</span>
+                        <span class="amount">1,599</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <ul>
+                         <li><i class="fas fa-check"></i> Jio Hotstar</li>
+                        <li><i class="fas fa-check"></i> Zee subscription</li>
+                        <li><i class="fas fa-check"></i> Google One</li>
+                        <li><i class="fas fa-check"></i>  Netflix</li>
+                         <li><i class="fas fa-check"></i> Apple TV</li>
+                        <li><i class="fas fa-check"></i> Amazon Prime</li>
+                        
+                    </ul>
+                    <button class="btn-pricing" onclick="selectPackage('enterprise')">300Mbps</button>
+
+                </div>
+
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Best Value</div>
+                    <h3>Premium Installation</h3>
+                    <div class="price">
+                        <span class="currency">₹</span>
+                        <span class="amount">3,999</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <ul>
+                        <li><i class="fas fa-check"></i>  Jio Hotstar</li>
+                        <li><i class="fas fa-check"></i>  Zee subscription</li>
+                        <li><i class="fas fa-check"></i>  Google One</li>
+                        <li><i class="fas fa-check"></i>  Netflix</li>
+                         <li><i class="fas fa-check"></i> Apple TV</li>
+                        <li><i class="fas fa-check"></i>  Amazon Prime</li>
+                        
+                    </ul>
+                    <button class="btn-pricing" onclick="selectPackage('enterprise')">1Gbps</button>
+
+
+
+
+
+
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise Installation</h3>
+                    <div class="price">
+                        <span class="currency">₹</span>
+                        <span class="amount">499</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <ul>
+                         <li><i class="fas fa-check"></i> Google one</li>
+                        <li><i class="fas fa-check"></i> Unlimited Data</li>
+                        <li><i class="fas fa-check"></i> Google One</li>
+                        <li><i class="fas fa-check"></i>  No Netflix</li>
+                         
+                        
+                    </ul>
+                    <button class="btn-pricing" onclick="selectPackage('enterprise')">40Mbps</button>
+
+
+
+
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Section -->
+    <section id="coverage" class="coverage">
+        <div class="container">
+            <h2>Check Service Availability</h2>
+            <div class="coverage-content">
+                <div class="coverage-form">
+                    <h3>Enter Your Address</h3>
+                    <form id="coverageForm">
+                        <div class="form-group">
+                            <input type="text" id="address" placeholder="Enter your full address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="pincode" placeholder="Pincode" required>
+                        </div>
+                        <button type="submit" class="btn-coverage">
+                            <i class="fas fa-search"></i>
+                            Check Availability
+                        </button>
+                    </form>
+                    <div class="coverage-result" id="coverageResult"></div>
+                </div>
+                <div class="coverage-info">
+                    <div class="coverage-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h4>Coverage Areas</h4>
+                            <p>500+ Cities</p>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-users"></i>
+                            <h4>Happy Customers</h4>
+                            <p>10,000+</p>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-clock"></i>
+                            <h4>Installation Time</h4>
+                            <p>2-4 Hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Why Choose Us?</h2>
+                    <p>We are certified Airtel installation partners with years of experience in providing high-quality internet solutions to homes and businesses.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>500+</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                        <div class="stat">
+                            <h3>98%</h3>
+                            <p>Success Rate</p>
+                        </div>
+                        <div class="stat">
+                            <h3>24/7</h3>
+                            <p>Support Available</p>
+                        </div>
+                    </div>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <i class="fas fa-certificate"></i>
+                            <div>
+                                <h4>Certified Technicians</h4>
+                                <p>All our technicians are Airtel certified and trained</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Quick Installation</h4>
+                                <p>Most installations completed within 2-4 hours</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <h4>24/7 Support</h4>
+                                <p>Round-the-clock technical support and assistance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Excellent service! The installation was quick and professional. My internet speed is amazing now!"</p>
+                            <div class="testimonial-author">
+                                <img src="https://via.placeholder.com/50" alt="Customer">
+                                <div>
+                                    <h4>Rahul Sharma</h4>
+                                    <span>Mumbai, Maharashtra</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 7400931824    </p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>abhishekabhishek5977@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Housing Colony, Bhind ,477007</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <p>Monday - Sunday: 8:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" placeholder="Your Phone" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="service" required>
+                                <option value="">Select Service</option>
+                                <option value="fiber">Airtel Fiber Installation</option>
+                                <option value="airfiber">Air Fiber Installation</option>
+                                <option value="maintenance">Maintenance & Support</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-contact">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                                    <div class="footer-logo">
+                    <i class="fas fa-wifi"></i>
+                    <span>Airtel Fiber</span>
+                </div>
+                    <p>Your trusted partner for high-speed internet installation and support services.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/15tjZ1pFyK/"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/airtelxstreamfibre_bhind?igsh=bnFsdm4wcmc5azA2"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Fiber Installation</a></li>
+                        <li><a href="#services">Air Fiber Setup</a></li>
+                        <li><a href="#services">Maintenance</a></li>
+                        <li><a href="#services">Technical Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#coverage">Coverage</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for updates and special offers</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DSB. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBookingModal()">&times;</span>
+            <h2>Book Your Installation</h2>
+            <form id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="bookingName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="bookingPhone" placeholder="Phone Number" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="bookingEmail" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="bookingAddress" placeholder="Installation Address" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <select id="bookingService" required>
+                            <option value="">Select Service</option>
+                            <option value="fiber">Airtel Fiber</option>
+                            <option value="airfiber">Air Fiber</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="bookingPackage" required>
+                            <option value="">Select Package</option>
+                            <option value="basic">Basic (₹999)</option>
+                            <option value="premium">Premium (₹1,499)</option>
+                            <option value="enterprise">Enterprise (₹2,999)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="bookingDate" required>
+                </div>
+                <div class="form-group">
+                    <select id="bookingTime" required>
+                        <option value="">Preferred Time</option>
+                        <option value="morning">Morning (9 AM - 12 PM)</option>
+                        <option value="afternoon">Afternoon (12 PM - 3 PM)</option>
+                        <option value="evening">Evening (3 PM - 6 PM)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-booking">
+                    <i class="fas fa-calendar-check"></i>
+                    Confirm Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html> 
