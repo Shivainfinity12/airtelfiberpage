@@ -15,7 +15,7 @@
             <div class="nav-logo">
                 <i class="fas fa-wifi"></i>
                 <span>Service Provider : Abhishek</span>
-            </div>
+            </div>  
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
@@ -25,9 +25,9 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
     </nav>
@@ -39,10 +39,10 @@
                 <h1> <br>Airtel Fiber <br>Air Fiber</h1>
                 <p>Get router in 2500rs and it will be installed free at your location .Grab this opportunity RIGHT NOW!</p>
                 <div class="hero-buttons">
-                    <button class="btn-primary" onclick="openBookingModal()">
+                    <span class="btn-primary" onclick="openBookingModal()">
                         <i class="fas fa-calendar-check"></i>
                         Book Installation
-                    </button>
+                    </span>
                     <button class="btn-secondary" onclick="checkCoverage()">
                         <i class="fas fa-map-marker-alt"></i>
                         7400931824
@@ -155,7 +155,9 @@
                         <li><i class="fas fa-check"></i> Jio Hotstar</li>
                         <li><i class="fas fa-check"></i> Zee subscription</li>
                         <li><i class="fas fa-check"></i> Google One</li>
-                        <li><i class="fas fa-check"></i> No Netflix</li>
+                        <li><i class="fas fa-xmark"></i> No Netflix</li>
+                        <li><i class="fas fa-xmark"></i> Apple TV</li>
+                        <li><i class="fas fa-xmark"></i>  Amazon Prime</li>
                     </ul>
                     <button class="btn-pricing" onclick="selectPackage('basic')">30 Mbps</button>
                 </div>
@@ -163,7 +165,7 @@
 
                 <div class="pricing-card featured">
                     <div class="pricing-badge">Best Value</div>
-                    <h3>Premium Installation</h3>
+                    <h3>Basic Installation</h3>
                     <div class="price">
                         <span class="currency">₹</span>
                         <span class="amount">899</span>
@@ -173,7 +175,9 @@
                          <li><i class="fas fa-check"></i> Jio Hotstar</li>
                         <li><i class="fas fa-check"></i> Zee subscription</li>
                         <li><i class="fas fa-check"></i> Google One</li>
-                        <li><i class="fas fa-check"></i> No Netflix</li>
+                        <li><i class="fas fa-xmark"></i> No Netflix</li>
+                        <li><i class="fas fa-xmark"></i> Apple TV</li>
+                        <li><i class="fas fa-xmark"></i>  Amazon Prime</li>
                     </ul>
                     <button class="btn-pricing" onclick="selectPackage('premium')">100 Mbps</button>
 
@@ -183,7 +187,7 @@
 
                 </div>
                 <div class="pricing-card">
-                    <h3>Enterprise Installation</h3>
+                    <h3>Premium Installation</h3>
                     <div class="price">
                         <span class="currency">₹</span>
                         <span class="amount">1,199</span>
@@ -217,7 +221,7 @@
             
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <h3>Basic Installation</h3>
+                    <h3>Premium Installation</h3>
                     <div class="price">
                         <span class="currency">₹</span>
                         <span class="amount">1,599</span>
@@ -250,7 +254,7 @@
                         <li><i class="fas fa-check"></i>  Zee subscription</li>
                         <li><i class="fas fa-check"></i>  Google One</li>
                         <li><i class="fas fa-check"></i>  Netflix</li>
-                         <li><i class="fas fa-check"></i> Apple TV</li>
+                        <li><i class="fas fa-check"></i> Apple TV</li>
                         <li><i class="fas fa-check"></i>  Amazon Prime</li>
                         
                     </ul>
@@ -263,7 +267,7 @@
 
                 </div>
                 <div class="pricing-card">
-                    <h3>Enterprise Installation</h3>
+                    <h3>Basic Installation</h3>
                     <div class="price">
                         <span class="currency">₹</span>
                         <span class="amount">499</span>
@@ -274,6 +278,8 @@
                         <li><i class="fas fa-check"></i> Unlimited Data</li>
                         <li><i class="fas fa-check"></i> Google One</li>
                         <li><i class="fas fa-check"></i>  No Netflix</li>
+                        <li><i class="fas fa-check"></i> Apple TV</li>
+                        <li><i class="fas fa-check"></i>  Amazon Prime</li>
                          
                         
                     </ul>
@@ -435,20 +441,20 @@
                 </div>
                 <div class="contact-form">
                     <h3>Send us a Message</h3>
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formsubmit.co/abhishekabhishek5977@gmail.com" method="POST">
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="text" id="name" placeholder="Your Name" required>
+                                <input type="text" name="name" id="name" placeholder="Your Name" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" id="email" placeholder="Your Email" required>
+                                <input type="email" name="email" id="email" placeholder="Your Email" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="phone" placeholder="Your Phone" required>
+                            <input type="tel" name="phone" id="phone" placeholder="Your Phone" required>
                         </div>
                         <div class="form-group">
-                            <select id="service" required>
+                            <select name="service" id="service" required>
                                 <option value="">Select Service</option>
                                 <option value="fiber">Airtel Fiber Installation</option>
                                 <option value="airfiber">Air Fiber Installation</option>
@@ -456,8 +462,13 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+                            <textarea name="message" id="message" placeholder="Your Message" rows="4" required></textarea>
                         </div>
+                        <!-- Hidden fields for FormSubmit configuration -->
+                        <input type="hidden" name="_subject" value="New Contact Form Submission - Airtel Fiber">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="thank-you.html">
                         <button type="submit" class="btn-contact">
                             <i class="fas fa-paper-plane"></i>
                             Send Message
@@ -523,31 +534,31 @@
         <div class="modal-content">
             <span class="close" onclick="closeBookingModal()">&times;</span>
             <h2>Book Your Installation</h2>
-            <form id="bookingForm">
+            <form id="bookingForm" action="https://formsubmit.co/abhishekabhishek5977@gmail.com" method="POST">
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" id="bookingName" placeholder="Full Name" required>
+                        <input type="text" name="name" id="bookingName" placeholder="Full Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" id="bookingPhone" placeholder="Phone Number" required>
+                        <input type="tel" name="phone" id="bookingPhone" placeholder="Phone Number" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" id="bookingEmail" placeholder="Email Address" required>
+                    <input type="email" name="email" id="bookingEmail" placeholder="Email Address" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="bookingAddress" placeholder="Installation Address" required>
+                    <input type="text" name="address" id="bookingAddress" placeholder="Installation Address" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <select id="bookingService" required>
+                        <select name="service" id="bookingService" required>
                             <option value="">Select Service</option>
                             <option value="fiber">Airtel Fiber</option>
                             <option value="airfiber">Air Fiber</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <select id="bookingPackage" required>
+                        <select name="package" id="bookingPackage" required>
                             <option value="">Select Package</option>
                             <option value="basic">Basic (₹999)</option>
                             <option value="premium">Premium (₹1,499)</option>
@@ -556,16 +567,21 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="date" id="bookingDate" required>
+                    <input type="date" name="date" id="bookingDate" required>
                 </div>
                 <div class="form-group">
-                    <select id="bookingTime" required>
+                    <select name="time" id="bookingTime" required>
                         <option value="">Preferred Time</option>
                         <option value="morning">Morning (9 AM - 12 PM)</option>
                         <option value="afternoon">Afternoon (12 PM - 3 PM)</option>
                         <option value="evening">Evening (3 PM - 6 PM)</option>
                     </select>
                 </div>
+                <!-- Hidden fields for FormSubmit configuration -->
+                <input type="hidden" name="_subject" value="New Installation Booking - Airtel Fiber">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="thank-you.html">
                 <button type="submit" class="btn-booking">
                     <i class="fas fa-calendar-check"></i>
                     Confirm Booking

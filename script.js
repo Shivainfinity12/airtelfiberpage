@@ -161,47 +161,40 @@ document.getElementById('coverageForm').addEventListener('submit', function(e) {
 //     }
 // });
 
-// // Booking form submission
-// document.getElementById('bookingForm').addEventListener('submit', function(e) {
-//     e.preventDefault();
+// Booking form submission
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    // Don't prevent default - let the form submit to FormSubmit
+    const bookingData = {
+        name: document.getElementById('bookingName').value,
+        phone: document.getElementById('bookingPhone').value,
+        email: document.getElementById('bookingEmail').value,
+        address: document.getElementById('bookingAddress').value,
+        service: document.getElementById('bookingService').value,
+        package: document.getElementById('bookingPackage').value,
+        date: document.getElementById('bookingDate').value,
+        time: document.getElementById('bookingTime').value
+    };
     
-//     const formData = new FormData(this);
-//     const bookingData = {
-//         name: document.getElementById('bookingName').value,
-//         phone: document.getElementById('bookingPhone').value,
-//         email: document.getElementById('bookingEmail').value,
-//         address: document.getElementById('bookingAddress').value,
-//         service: document.getElementById('bookingService').value,
-//         package: document.getElementById('bookingPackage').value,
-//         date: document.getElementById('bookingDate').value,
-//         time: document.getElementById('bookingTime').value
-//     };
+    // Validate form
+    if (!bookingData.name || !bookingData.phone || !bookingData.email || !bookingData.address || 
+        !bookingData.service || !bookingData.package || !bookingData.date || !bookingData.time) {
+        e.preventDefault();
+        showMessage('Please fill in all fields', 'error');
+        return;
+    }
     
-    // // Validate form
-    // if (!bookingData.name || !bookingData.phone || !bookingData.email || !bookingData.address || 
-    //     !bookingData.service || !bookingData.package || !bookingData.date || !bookingData.time) {
-    //     showMessage('Please fill in all fields', 'error');
-    //     return;
-    // }
+    // Show loading state
+    const btnBooking = document.querySelector('.btn-booking');
+    btnBooking.innerHTML = '<span class="loading"></span> Processing...';
+    btnBooking.disabled = true;
     
-    // Simulate booking submission
-    // const btnBooking = document.querySelector('.btn-booking');
-    // btnBooking.innerHTML = '<span class="loading"></span> Processing...';
-    // btnBooking.disabled = true;
-    
-//     setTimeout(() => {
-//         showMessage('Booking submitted successfully! We will contact you within 24 hours.', 'success');
-//         closeBookingModal();
-//         this.reset();
-//         btnBooking.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Booking';
-//         btnBooking.disabled = false;
-//     }, 2000);
-// });
+    // Form will submit to FormSubmit and redirect back
+    // The success message will be shown on the redirect page
+});
 
 // Contact form submission
 document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
+    // Don't prevent default - let the form submit to FormSubmit
     const contactData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
@@ -212,21 +205,18 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     
     // Validate form
     if (!contactData.name || !contactData.email || !contactData.phone || !contactData.service || !contactData.message) {
+        e.preventDefault();
         showMessage('Please fill in all fields', 'error');
         return;
     }
     
-    // Simulate form submission
+    // Show loading state
     const btnContact = document.querySelector('.btn-contact');
     btnContact.innerHTML = '<span class="loading"></span> Sending...';
     btnContact.disabled = true;
     
-    setTimeout(() => {
-        showMessage('Message sent successfully! We will get back to you soon.', 'success');
-        this.reset();
-        btnContact.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-        btnContact.disabled = false;
-    }, 2000);
+    // Form will submit to FormSubmit and redirect back
+    // The success message will be shown on the redirect page
 });
 
 // Service Selection Functions

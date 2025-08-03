@@ -83,18 +83,42 @@ body {
     color: var(--airtel-red);
 }
 
+/* Hamburger Menu */
 .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.hamburger span {
+.hamburger:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.hamburger .bar {
     width: 25px;
     height: 3px;
     background: #333;
     margin: 3px 0;
     transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* Hamburger Animation */
+.hamburger.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* Hero Section */
@@ -214,6 +238,8 @@ body {
     padding: 1rem;
     border-radius: 10px;
 }
+
+
 
 .speed-label {
     display: block;
@@ -451,6 +477,10 @@ body {
 
 .pricing-card li i {
     color: #28a745;
+}
+
+.pricing-card li i.fa-xmark {
+    color: #dc3545;
 }
 
 .btn-pricing {
@@ -977,7 +1007,11 @@ body {
     .hamburger {
         display: flex;
     }
-
+    
+    .nav-menu {
+        display: none;
+    }
+    
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -989,6 +1023,18 @@ body {
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0;
+        display: flex;
+        z-index: 999;
+    }
+    
+    .nav-menu a {
+        padding: 1rem 0;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .nav-menu a:last-child {
+        border-bottom: none;
     }
 
     .nav-menu.active {
@@ -1121,6 +1167,7 @@ body {
     border-radius: 50%;
     border-top-color: #fff;
     animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
 }
 
 @keyframes spin {
