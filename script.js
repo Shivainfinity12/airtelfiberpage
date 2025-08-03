@@ -96,51 +96,81 @@ function showSpeedRecommendation(download, upload) {
 
 // Coverage Check Functionality
 function checkCoverage() {
+    console.log('checkCoverage function called'); // Debug log
+    
     const address = document.getElementById('address').value;
     const pincode = document.getElementById('pincode').value;
     const result = document.getElementById('coverageResult');
+    
+    console.log('Address:', address); // Debug log
+    console.log('Pincode:', pincode); // Debug log
     
     if (!address || !pincode) {
         showMessage('Please enter both address and pincode', 'error');
         return;
     }
     
-    // Simulate coverage check
-    result.style.display = 'block';
-    result.innerHTML = '<div class="loading"></div> Checking coverage...';
-    
-    setTimeout(() => {
-        // Simulate coverage result (in real implementation, this would check against actual coverage data)
-        const isAvailable = Math.random() > 0.3; // 70% chance of availability
+    // Check if pincode is 477001
+    if (pincode === '477001') {
+        console.log('Pincode 477001 detected - showing available service'); // Debug log
         
-        if (isAvailable) {
-            result.className = 'coverage-result available';
-            result.innerHTML = `
-                <h4><i class="fas fa-check-circle"></i> Service Available!</h4>
-                <p>Great news! Airtel Fiber is available at your location.</p>
-                <ul>
-                    <li>Fiber: Available (Up to 1Gbps)</li>
-                    <li>Air Fiber: Available (Up to 100Mbps)</li>
-                    <li>Installation: 2-4 hours</li>
-                </ul>
-                <button class="btn-primary" onclick="openBookingModal()">Book Installation</button>
-            `;
-        } else {
-            result.className = 'coverage-result unavailable';
-            result.innerHTML = `
-                <h4><i class="fas fa-times-circle"></i> Service Not Available</h4>
-                <p>Unfortunately, Airtel Fiber is not available at your location yet.</p>
-                <p>We're expanding our network. Please check back in a few months or contact us for updates.</p>
-                <button class="btn-secondary" onclick="contactUs()">Contact Us</button>
-            `;
-        }
-    }, 2000);
+        // Service is available for 477001
+        alert('Service is available for 477001');
+        result.style.display = 'block';
+        result.className = 'coverage-result available';
+        result.innerHTML = `
+            <h4><i class="fas fa-check-circle"></i> Service Available!</h4>
+            <p>Great news! Airtel Fiber is available at your location.</p>
+            <ul>
+                <li>Fiber: Available (Up to 1Gbps)</li>
+                <li>Air Fiber: Available (Up to 100Mbps)</li>
+                <li>Installation: 2-4 hours</li>
+            </ul>
+            <button class="btn-primary" onclick="openBookingModal()">Book Installation</button>
+        `;
+        
+        // Show custom success alert
+        showCustomAlert('🎉 Our service is available at your location! You can now book your installation.', 'success');
+        
+    } else {
+        console.log('Other pincode detected - showing unavailable service'); // Debug log
+        
+        // Service not available for other pincodes
+        result.style.display = 'block';
+        result.className = 'coverage-result unavailable';
+        result.innerHTML = `
+            <h4><i class="fas fa-times-circle"></i> Service Not Available</h4>
+            <p>Unfortunately, Airtel Fiber is not available at your location yet.</p>
+            <p>Currently, we only provide service in pincode 477001. We're expanding our network to other areas soon.</p>
+            <button class="btn-secondary" onclick="contactUs()">Contact Us</button>
+        `;
+        
+        // Show custom error alert
+        showCustomAlert('❌ Sorry, our service is not available at your location yet. We currently serve only pincode 477001.', 'error');
+    }
 }
 
+// Make function globally accessible
+window.checkCoverage = checkCoverage;
+
 // Coverage form submission
-document.getElementById('coverageForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    checkCoverage();
+document.addEventListener('DOMContentLoaded', function() {
+    const coverageForm = document.getElementById('coverageForm');
+    if (coverageForm) {
+        coverageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            checkCoverage();
+        });
+    }
+    
+    // Also add click handler to the button as backup
+    const coverageButton = document.querySelector('.btn-coverage');
+    if (coverageButton) {
+        coverageButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            checkCoverage();
+        });
+    }
 });
 
 // Booking Modal Functions
@@ -163,7 +193,8 @@ document.getElementById('coverageForm').addEventListener('submit', function(e) {
 
 // Booking form submission
 document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    // Don't prevent default - let the form submit to FormSubmit
+    e.preventDefault();
+    
     const bookingData = {
         name: document.getElementById('bookingName').value,
         phone: document.getElementById('bookingPhone').value,
@@ -178,7 +209,6 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
     // Validate form
     if (!bookingData.name || !bookingData.phone || !bookingData.email || !bookingData.address || 
         !bookingData.service || !bookingData.package || !bookingData.date || !bookingData.time) {
-        e.preventDefault();
         showMessage('Please fill in all fields', 'error');
         return;
     }
@@ -188,13 +218,41 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
     btnBooking.innerHTML = '<span class="loading"></span> Processing...';
     btnBooking.disabled = true;
     
-    // Form will submit to FormSubmit and redirect back
-    // The success message will be shown on the redirect page
+    // Send email using email service
+    emailService.sendBookingForm(bookingData).then((success) => {
+        if (success) {
+            // Show success message
+            showMessage('Booking submitted successfully! We will contact you within 24 hours.', 'success');
+            
+            // Close modal
+            closeBookingModal();
+            
+            // Reset form
+            this.reset();
+            
+            // Reset button
+            btnBooking.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Booking';
+            btnBooking.disabled = false;
+            
+            // Show thank you message
+            showThankYouMessage();
+            
+            console.log('Booking form email sent successfully!');
+        } else {
+            // Show error message
+            showMessage('Failed to submit booking. Please try again or call us directly.', 'error');
+            
+            // Reset button
+            btnBooking.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Booking';
+            btnBooking.disabled = false;
+        }
+    });
 });
 
 // Contact form submission
 document.getElementById('contactForm').addEventListener('submit', function(e) {
-    // Don't prevent default - let the form submit to FormSubmit
+    e.preventDefault();
+    
     const contactData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
@@ -205,7 +263,6 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     
     // Validate form
     if (!contactData.name || !contactData.email || !contactData.phone || !contactData.service || !contactData.message) {
-        e.preventDefault();
         showMessage('Please fill in all fields', 'error');
         return;
     }
@@ -215,8 +272,32 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     btnContact.innerHTML = '<span class="loading"></span> Sending...';
     btnContact.disabled = true;
     
-    // Form will submit to FormSubmit and redirect back
-    // The success message will be shown on the redirect page
+    // Send email using email service
+    emailService.sendContactForm(contactData).then((success) => {
+        if (success) {
+            // Show success message
+            showMessage('Message sent successfully! We will get back to you within 24 hours.', 'success');
+            
+            // Reset form
+            this.reset();
+            
+            // Reset button
+            btnContact.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            btnContact.disabled = false;
+            
+            // Show thank you message
+            showThankYouMessage();
+            
+            console.log('Contact form email sent successfully!');
+        } else {
+            // Show error message
+            showMessage('Failed to send message. Please try again or call us directly.', 'error');
+            
+            // Reset button
+            btnContact.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            btnContact.disabled = false;
+        }
+    });
 });
 
 // Service Selection Functions
@@ -270,6 +351,86 @@ function showMessage(message, type) {
 
 function contactUs() {
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Show thank you message
+function showThankYouMessage() {
+    // Create thank you modal
+    const thankYouModal = document.createElement('div');
+    thankYouModal.className = 'modal';
+    thankYouModal.style.display = 'flex';
+    thankYouModal.innerHTML = `
+        <div class="modal-content" style="text-align: center; max-width: 500px;">
+            <div style="font-size: 4rem; color: #28a745; margin-bottom: 1rem;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 style="color: #28a745; margin-bottom: 1rem;">Thank You!</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Your message has been sent successfully. We will get back to you within 24 hours.</p>
+            <p style="font-size: 1rem; margin-bottom: 2rem; color: #666;">For immediate assistance, please call us at <strong>+91 7400931824</strong></p>
+            <button onclick="closeThankYouModal()" style="background: var(--airtel-red); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer;">
+                <i class="fas fa-home"></i> Back to Home
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(thankYouModal);
+    
+    // Auto close after 10 seconds
+    setTimeout(() => {
+        if (thankYouModal.parentNode) {
+            closeThankYouModal();
+        }
+    }, 10000);
+}
+
+// Close thank you modal
+function closeThankYouModal() {
+    const thankYouModal = document.querySelector('.modal');
+    if (thankYouModal) {
+        thankYouModal.remove();
+    }
+}
+
+// Custom alert function
+function showCustomAlert(message, type) {
+    // Create alert modal
+    const alertModal = document.createElement('div');
+    alertModal.className = 'modal';
+    alertModal.style.display = 'flex';
+    alertModal.style.zIndex = '10000';
+    
+    const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+    const color = type === 'success' ? '#28a745' : '#dc3545';
+    
+    alertModal.innerHTML = `
+        <div class="modal-content" style="text-align: center; max-width: 400px;">
+            <div style="font-size: 3rem; color: ${color}; margin-bottom: 1rem;">
+                <i class="${icon}"></i>
+            </div>
+            <h3 style="color: ${color}; margin-bottom: 1rem;">${type === 'success' ? 'Service Available!' : 'Service Not Available'}</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.5;">${message}</p>
+            <button onclick="closeCustomAlert()" style="background: ${color}; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer;">
+                OK
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(alertModal);
+    
+    // Auto close after 5 seconds
+    setTimeout(() => {
+        if (alertModal.parentNode) {
+            closeCustomAlert();
+        }
+    }, 5000);
+}
+
+// Close custom alert
+function closeCustomAlert() {
+    const alertModal = document.querySelector('.modal[style*="z-index: 10000"]');
+    if (alertModal) {
+        alertModal.remove();
+    }
 }
 
 // Newsletter subscription
