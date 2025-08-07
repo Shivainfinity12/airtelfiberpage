@@ -3,6 +3,11 @@ const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const bookingModal = document.getElementById('bookingModal');
 
+// Carousel Variables
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const totalSlides = slides.length;
+
 // Navigation Toggle
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
@@ -568,4 +573,55 @@ style.textContent = `
         transform: translateY(0);
     }
 `;
-document.head.appendChild(style); 
+document.head.appendChild(style);
+
+// Carousel Functions
+function changeSlide(direction) {
+    // Remove active class from current slide
+    slides[currentSlide].classList.remove('active');
+    
+    // Calculate new slide index
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    
+    // Add active class to new slide
+    slides[currentSlide].classList.add('active');
+}
+
+function goToSlide(slideIndex) {
+    // Remove active class from current slide
+    slides[currentSlide].classList.remove('active');
+    
+    // Set new current slide
+    currentSlide = slideIndex;
+    
+    // Add active class to new slide
+    slides[currentSlide].classList.add('active');
+}
+
+// Auto-advance carousel
+function autoAdvanceCarousel() {
+    changeSlide(1);
+}
+
+// Start auto-advance when page loads
+let autoAdvanceInterval;
+document.addEventListener('DOMContentLoaded', () => {
+    // Start auto-advance every 5 seconds
+    autoAdvanceInterval = setInterval(autoAdvanceCarousel, 3000);
+    
+    // Pause auto-advance when user hovers over carousel
+    const carousel = document.querySelector('.hero-carousel');
+    if (carousel) {
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(autoAdvanceInterval);
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            autoAdvanceInterval = setInterval(autoAdvanceCarousel, 3000);
+        });
+    }
+});
+
+// Make carousel functions globally accessible
+window.changeSlide = changeSlide;
+window.goToSlide = goToSlide; 
